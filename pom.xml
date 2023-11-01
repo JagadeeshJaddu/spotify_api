@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.api</groupId>
 	<artifactId>spotify_api</artifactId>
-	<version>0.0.3</version>
+	<version>0.0.5</version>
 	<name>spotify_api</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
@@ -40,7 +40,7 @@
 		<dependency>
 			<groupId>com.spotify</groupId>
 			<artifactId>playlistmanager</artifactId>
-			<version>0.0.6</version>
+			<version>0.0.9</version>
 		</dependency>
 	</dependencies>
 

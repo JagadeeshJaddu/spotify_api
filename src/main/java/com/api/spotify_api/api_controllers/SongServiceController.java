@@ -71,6 +71,7 @@ public class SongServiceController {
         Long albumId = findSongsByAlbumRequestDTO.getAlbumId();
         List<Song> songs;
         FindSongsByAlbumResponseDTO findSongsByAlbumResponseDTO = new FindSongsByAlbumResponseDTO();
+        findSongsByAlbumResponseDTO.setAlbumId(albumId);
         try{
             songs = songService.findSongsByAlbum(albumId);
             findSongsByAlbumResponseDTO.setSongs(songs);
