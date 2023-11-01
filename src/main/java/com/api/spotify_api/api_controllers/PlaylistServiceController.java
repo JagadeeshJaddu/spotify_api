@@ -1,5 +1,6 @@
 package com.api.spotify_api.api_controllers;
 
+import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -95,5 +96,12 @@ public class PlaylistServiceController {
             responseDTO.setMessage(e.getMessage());
         }
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/spotify/playlist/all" , method = RequestMethod.GET)
+    public ResponseEntity<Object> findAllPlaylists()
+    {
+        List<Playlist> playlists = playlistService.findAllPlaylists();
+        return new ResponseEntity<>(playlists,HttpStatus.OK);
     }
 }

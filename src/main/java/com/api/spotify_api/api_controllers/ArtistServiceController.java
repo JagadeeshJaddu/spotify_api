@@ -1,5 +1,7 @@
 package com.api.spotify_api.api_controllers;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,5 +39,12 @@ public class ArtistServiceController {
             responseDTO.setMessage(e.getMessage());
         }
         return new ResponseEntity<>(responseDTO, HttpStatus.CREATED);
+    }
+
+    @RequestMapping(value = "/spotify/artist/all" , method = RequestMethod.GET)
+    public ResponseEntity<Object> findAllArtists()
+    {
+        List<Artist> artists = artistService.findAllArtists();
+        return new ResponseEntity<>(artists,HttpStatus.OK);
     }
 }
