@@ -5,12 +5,12 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.1.5</version>
+		<version>3.2.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.api</groupId>
 	<artifactId>spotify_api</artifactId>
-	<version>0.0.5</version>
+	<version>0.0.6</version>
 	<name>spotify_api</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
@@ -40,7 +40,7 @@
 		<dependency>
 			<groupId>com.spotify</groupId>
 			<artifactId>playlistmanager</artifactId>
-			<version>0.0.9</version>
+			<version>1.0.1</version>
 		</dependency>
 	</dependencies>
 

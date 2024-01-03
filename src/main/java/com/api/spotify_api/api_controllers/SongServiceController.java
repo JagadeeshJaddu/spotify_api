@@ -13,6 +13,7 @@ import com.spotify.playlistmanager.dtos.FindSongsByAlbumRequestDTO;
 import com.spotify.playlistmanager.dtos.FindSongsByAlbumResponseDTO;
 import com.spotify.playlistmanager.dtos.FindSongsByArtistRequestDTO;
 import com.spotify.playlistmanager.dtos.FindSongsByArtistResponseDTO;
+import com.spotify.playlistmanager.dtos.RemoveSongRequestDTO;
 import com.spotify.playlistmanager.dtos.ResponseDTO;
 import com.spotify.playlistmanager.dtos.ResponseType;
 import com.spotify.playlistmanager.models.Song;
@@ -26,7 +27,7 @@ public class SongServiceController {
         this.songService = songService;
     }
 
-    @RequestMapping(value = "/spotify/songs", method = RequestMethod.POST)
+    @RequestMapping(value = "/spotify/songs/add", method = RequestMethod.POST)
     public ResponseEntity<Object> addSong(@RequestBody AddSongRequestDTO addSongRequestDTO) {
         Song song;
         ResponseDTO responseDTO = new ResponseDTO();
@@ -48,7 +49,7 @@ public class SongServiceController {
     }
 
     @RequestMapping(value = "/spotify/songs/artist" , method = RequestMethod.GET)
-    public ResponseEntity<Object> finnulldSongsByArtist(@RequestBody FindSongsByArtistRequestDTO findSongsByArtistRequestDTO)
+    public ResponseEntity<Object> findAlldSongsByArtist(@RequestBody FindSongsByArtistRequestDTO findSongsByArtistRequestDTO)
     {
         Long artistId = findSongsByArtistRequestDTO.getArtistId();
         FindSongsByArtistResponseDTO findSongsByArtistResponseDTO = new FindSongsByArtistResponseDTO();
@@ -89,5 +90,23 @@ public class SongServiceController {
     {
         List<Song> songs = songService.findAllSongs();
         return new ResponseEntity<>(songs,HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/spotify/songs/delete" , method = RequestMethod.DELETE)
+    public ResponseEntity<Object> deleteSong(@RequestBody RemoveSongRequestDTO removeSongRequestDTO)
+    {
+        Long songId = removeSongRequestDTO.getSongId();
+        ResponseDTO responseDTO = new ResponseDTO();
+        responseDTO.setEntityType(EntityType.Song);
+        responseDTO.setResponseType(ResponseType.Removal);
+        try{
+            songService.deleteSong(songId);
+            responseDTO.setStatus("SUCCESS");
+        }catch(Exception e)
+        {
+            responseDTO.setStatus("FAILURE");
+            responseDTO.setMessage(e.getMessage());
+        }
+        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 }
